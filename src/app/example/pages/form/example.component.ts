@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { ExampleService } from '../../services/example.service';
   templateUrl: './example.component.html',
   styleUrls: ['./example.component.css']
 })
-export class ExampleComponent implements OnInit {
+export class ExampleComponent {
   emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
   genders: ISelect[] = [
     { value: 'm', label: 'Maculino' },
@@ -35,22 +35,8 @@ export class ExampleComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.form.reset({
-      name: 'Edwin',
-      last_name: 'Figueroa',
-      document: '1234567890',
-      email: 'edwin@gmail.com',
-      gender: 'm',
-      age: '25',
-      hobby: 'leer',
-    })
-
-    this.getInfo();
-  }
-
   openDialog(title = 'Guardado', message = 'Se guardo la información!', background = 'green', info: IUserInfo): void {
-    const dialog = this.dialog.open(DialogComponent, {
+    this.dialog.open(DialogComponent, {
       width: '500px',
       data: {
         title,
@@ -73,10 +59,6 @@ export class ExampleComponent implements OnInit {
   resetInput(inputs: string | string[]) {
     if(typeof inputs === 'string') this.form.get(inputs)?.setValue('')
     else inputs.forEach(imput => this.form.get(imput)?.setValue(''))
-  }
-
-  getInfo() {
-    this.exampleService.getInfo().subscribe(response => console.log(response))
   }
 
   submitForm() {
