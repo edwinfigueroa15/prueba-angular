@@ -5,17 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MaterialModule } from './material.module';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MaterialModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
