@@ -48,8 +48,14 @@ export class ExampleComponent {
   }
 
   onlyNumbers(event: KeyboardEvent ) {
-    if(Number(event.key) >= 0 && Number(event.key) <= 9) return true;
-    return false;
+    const regex = new RegExp("^[0-9]");
+    return regex.test(event.key);
+  }
+
+  onlyLetters(event: KeyboardEvent ) {
+    if(event.key === " ") return true;
+    const regex = new RegExp("^[a-zA-Z\u00C0-\u017F]+$");
+    return regex.test(event.key);
   }
 
   validInput(nameInput: string, errorName: string) {

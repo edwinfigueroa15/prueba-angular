@@ -1,8 +1,14 @@
 <div style="text-align: center;">
   <h1 mat-dialog-title>{{ data.title }}</h1>
   <div mat-dialog-content>{{ data.message }}</div>
-  <div class="flex justify-center">
-    <pre style="text-align: start;">{{ data.info | json }}</pre>
+  <div class="my-3">
+    <p class=" w-full m-0 p-0">Nombre: <strong>{{ data.info.name.trim() }}</strong></p>
+    <p class=" w-full m-0 p-0">Apellido: <strong>{{ data.info.last_name.trim() }}</strong></p>
+    <p class=" w-full m-0 p-0">Documento: <strong>{{ data.info.document }}</strong></p>
+    <p class=" w-full m-0 p-0">Correo: <strong>{{ data.info.email }}</strong></p>
+    <p class=" w-full m-0 p-0">Género: <strong>{{ data.info.gender === 'm' ? 'Maculino' : 'Femenino' }}</strong></p>
+    <p class=" w-full m-0 p-0" *ngIf="data.info.gender === 'm'">Edad: <strong>{{ data.info.age }}</strong></p>
+    <p class=" w-full m-0 p-0">Pasatiempo: <strong>{{ data.info.hobby | titlecase }}</strong></p>
   </div>
   <div mat-dialog-actions class="flex justify-center">
     <button mat-button mat-dialog-close cdkFocusInitial (click)="close()" [style]="{ 'background': data.background, 'color': '#ffffff' }">Ok</button>

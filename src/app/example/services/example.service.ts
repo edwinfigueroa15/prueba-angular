@@ -16,7 +16,7 @@ export class ExampleService {
       return of(data).pipe(
         map(info => {
           const response = info.map((item: IUserInfo) => {
-            item.name = `${item.name} ${item.last_name}`;
+            item.name = `${item.name.trim()} ${item.last_name?.trim()}`;
             delete item.last_name
             return item
           })

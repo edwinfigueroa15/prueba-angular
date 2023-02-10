@@ -4,14 +4,14 @@
 
       <mat-form-field appearance="outline" class="w-full my-1">
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name" placeholder="Nombre">
+        <input matInput formControlName="name" placeholder="Nombre" (keypress)="onlyLetters($event)">
         <mat-error *ngIf="validInput('name', 'required')">El nombre es <strong>obligatorio</strong></mat-error>
         <mat-error *ngIf="validInput('name', 'minlength')">Debe tener minimo <strong>3 caracteres</strong></mat-error>
       </mat-form-field>
     
       <mat-form-field appearance="outline" class="w-full my-1">
         <mat-label>Apellido</mat-label>
-        <input matInput formControlName="last_name" placeholder="Apellido">
+        <input matInput formControlName="last_name" placeholder="Apellido" (keypress)="onlyLetters($event)">
         <mat-error *ngIf="validInput('last_name', 'minlength')">Debe tener minimo <strong>3 caracteres</strong></mat-error>
       </mat-form-field>
     
