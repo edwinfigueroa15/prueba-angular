@@ -1,0 +1,62 @@
+<div class="container-card flex justify-center items-center">
+  <div class="w-4/5 sm:w-3/4 md:w-1/2 lg:w-2/6 rounded-lg shadow">
+    <form class="w-full bg-white p-7 rounded-lg" [formGroup]="form" autocomplete="off">
+
+      <mat-form-field appearance="outline" class="w-full my-1">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" placeholder="Nombre">
+        <mat-error *ngIf="validInput('name', 'required')">El nombre es <strong>obligatorio</strong></mat-error>
+        <mat-error *ngIf="validInput('name', 'minlength')">Debe tener minimo <strong>3 caracteres</strong></mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" class="w-full my-1">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="last_name" placeholder="Apellido">
+        <mat-error *ngIf="validInput('last_name', 'minlength')">Debe tener minimo <strong>3 caracteres</strong></mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" class="w-full my-1">
+        <mat-label>Documento</mat-label>
+        <input matInput formControlName="document" placeholder="Documento" (keypress)="onlyNumbers($event)">
+        <mat-error *ngIf="validInput('document', 'required')">El documento es <strong>obligatorio</strong></mat-error>
+        <mat-error *ngIf="validInput('document', 'minlength')">Debe tener minimo <strong>10 caracteres</strong></mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" class="w-full my-1">
+        <mat-label>Correo</mat-label>
+        <input matInput formControlName="email" placeholder="Correo">
+        <mat-error *ngIf="validInput('email', 'required')">El correo es <strong>obligatorio</strong></mat-error>
+        <mat-error *ngIf="validInput('email', 'pattern')">El formato del correo no es correcto <strong>example@mail.com</strong></mat-error>
+      </mat-form-field>
+    
+      <div class="grid grid-cols-1 gap-4 my-1" [ngClass]="{ 'grid-cols-2': form.controls['gender'].value === 'm' }">
+        <mat-form-field appearance="outline" >
+          <mat-label>Seleccione un género</mat-label>
+          <select matNativeControl required formControlName="gender">
+            <option *ngFor="let gender of genders" [value]="gender.value" [label]="gender.label"></option>
+          </select>
+          <mat-error *ngIf="validInput('gender', 'required')">El género es <strong>obligatorio</strong></mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline" class="w-full" *ngIf="form.controls['gender'].value === 'm'">
+          <mat-label>Edad</mat-label>
+          <input matInput formControlName="age" placeholder="Edad" (keypress)="onlyNumbers($event)">
+          <mat-error *ngIf="validInput('age', 'min') || validInput('age', 'max')">La edad debe esta entre <strong>0 a 100</strong></mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="mb-2"><mat-label>Seleccione un pasatiempo *: </mat-label></div>
+      <mat-radio-group aria-label="Seleccione un pasatiempo" formControlName="hobby">
+        <mat-radio-button value="leer" class="mr-4">Leer</mat-radio-button>
+        <mat-radio-button value="caminar" class="mr-4">Caminar</mat-radio-button>
+        <mat-radio-button value="dormir" class="mr-4">Dormir</mat-radio-button>
+      </mat-radio-group>
+    
+      <div class="flex justify-between mt-5">
+        <button mat-stroked-button color="primary" routerLink="list">Ver listado</button>
+        <button type="button" (click)="submitForm()" mat-raised-button color="primary" [disabled]="!form.valid">Guardar información</button>
+      </div>
+    
+    </form>
+  </div>
+</div>

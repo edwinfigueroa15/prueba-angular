@@ -1,0 +1,10 @@
+<div style="text-align: center;">
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+  <div mat-dialog-content>{{ data.message }}</div>
+  <div class="flex justify-center">
+    <pre style="text-align: start;">{{ data.info | json }}</pre>
+  </div>
+  <div mat-dialog-actions class="flex justify-center">
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="close()" [style]="{ 'background': data.background, 'color': '#ffffff' }">Ok</button>
+  </div>
+</div>
